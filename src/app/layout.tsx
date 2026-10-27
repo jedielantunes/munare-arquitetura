@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { site } from "@/config/site";
 import "./globals.css";
 
 const serif = Cormorant_Garamond({
@@ -14,23 +15,30 @@ const sans = Manrope({
   display: "swap",
 });
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL || "http://localhost:3000"),
-  title: "Munare Arquitetura | Arquitetura e Interiores",
-  description:
-    "Ideias, conceitos e soluções de arquitetura e interiores criadas em harmonia com o seu espaço.",
+  metadataBase: new URL(site.url),
+  title: site.title,
+  description: site.description,
+  applicationName: site.name,
+  publisher: site.name,
+  category: "architecture",
+  robots: { index: true, follow: true },
+  alternates: { canonical: site.url },
   openGraph: {
-    title: "Munare Arquitetura | Arquitetura e Interiores",
-    description:
-      "Ideias, conceitos e soluções de arquitetura e interiores criadas em harmonia com o seu espaço.",
+    title: site.title,
+    description: site.description,
+    siteName: site.name,
     locale: "pt_BR",
     type: "website",
-    siteName: "Munare Arquitetura",
+    url: site.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.title,
+    description: site.description,
     images: [
       {
-        url: "/brand/logomunare.png",
-        width: 544,
-        height: 701,
-        alt: "Símbolo da Munare Arquitetura",
+        url: "/opengraph-image",
+        alt: "Munare Arquitetura — Arquitetura, Interiores e Conceito",
       },
     ],
   },

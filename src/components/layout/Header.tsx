@@ -10,11 +10,15 @@ export default function Header() {
           <Brand />
         </a>
         <button
+          id="menu-toggle"
           type="button"
           className="menu-toggle"
           onClick={() => setOpen(!open)}
           aria-expanded={open}
           aria-controls="menu-principal"
+          onKeyDown={(event) => {
+            if (event.key === "Escape") setOpen(false);
+          }}
         >
           {open ? "Fechar −" : "Menu +"}
         </button>
@@ -22,6 +26,12 @@ export default function Header() {
           id="menu-principal"
           aria-label="Navegação principal"
           className={open ? "navigation is-open" : "navigation"}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") {
+              setOpen(false);
+              document.getElementById("menu-toggle")?.focus();
+            }
+          }}
         >
           {[
             ["Projetos", "projetos"],

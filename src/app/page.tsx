@@ -9,9 +9,30 @@ import Process from "@/components/home/Process";
 import Studio from "@/components/home/Studio";
 import Contact from "@/components/home/Contact";
 import FinalCTA from "@/components/home/FinalCTA";
+import WhatsAppFloating from "@/components/WhatsAppFloating";
+import { site } from "@/config/site";
+
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${site.url}#organization`,
+  name: site.name,
+  url: site.url,
+  logo: new URL("/brand/logomunare.png", site.url).href,
+  email: site.email,
+  telephone: site.phone,
+  sameAs: [site.instagram, site.youtube],
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organization).replace(/</g, "\\u003c"),
+        }}
+      />
       <Header />
       <main id="conteudo" className="min-h-screen">
         <Hero />
@@ -25,6 +46,7 @@ export default function Home() {
         <FinalCTA />
       </main>
       <Footer />
+      <WhatsAppFloating />
     </>
   );
 }

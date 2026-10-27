@@ -23,7 +23,6 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} Munare Arquitetura</span>
-          <a href="#inicio">Voltar ao topo ↑</a>
         </div>
       </div>
     </footer>
